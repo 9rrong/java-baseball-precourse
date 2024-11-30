@@ -20,11 +20,31 @@ public class Numbers {
         try {
             return new Numbers(numberString.chars()
                     .map(c -> c - '0')
+                    .peek(Numbers::validateRange)
                     .boxed()
                     .collect(Collectors.toList()));
+
         } catch (Exception e) {
             throw new IllegalArgumentException(e);
         }
+    }
+
+    public Hint compareWith(List<Integer> compareNumbers) {
+        int ball = 0;
+        int strike = 0;
+
+        for (int i = 0; i < NUMBERS_LENGTH; i++) {
+            if (numbers.get(i).equals(compareNumbers.get(i))) {
+                strike++;
+                continue;
+            }
+
+            if (compareNumbers.contains(numbers.get(i))) {
+                ball++;
+            }
+        }
+
+        return new Hint(ball, strike);
     }
 
     private static void validateNumberString(String numberString) {
@@ -47,6 +67,12 @@ public class Numbers {
 
     private static void validateChar(String numberString) {
         if (!numberString.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateRange(int number) {
+        if (number < NUMBER_MIN_VALUE || number > NUMBER_MAX_VALUE) {
             throw new IllegalArgumentException();
         }
     }
