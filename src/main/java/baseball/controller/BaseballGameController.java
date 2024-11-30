@@ -21,7 +21,7 @@ public class BaseballGameController {
     }
 
     public void run() {
-        while (true) {
+        do {
             List<Integer> computerNumbers = getRandomNumbers();
 
             while (true) {
@@ -37,10 +37,7 @@ public class BaseballGameController {
 
             outputView.printGameOver();
 
-            if (!Restart.fromInput(inputView.getRestart()).isRestart()) {
-                break;
-            }
-        }
+        } while (Restart.fromInput(inputView.getRestart()).isRestart());
     }
 
     private Numbers getNumbers() {
