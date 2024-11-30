@@ -13,6 +13,10 @@ public class Hint {
         this.strike = strike;
     }
 
+    public boolean isThreeStrike() {
+        return strike == 3;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
