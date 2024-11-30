@@ -7,7 +7,7 @@ public class InputView {
 
 
     public String getInput() {
-        System.out.println(NUMBER_INPUT_PROMPT);
+        System.out.print(NUMBER_INPUT_PROMPT);
         return Console.readLine();
     }
 }
